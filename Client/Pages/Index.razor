@@ -1,0 +1,18 @@
+﻿@page "/"
+@using AntBlazor
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<Counter IncrementAmount="amount" ></Counter>
+<SurveyPrompt Title="How is Blazor working for you?" />
+<input @bind="amount" />
+<AntButton type="primary" @onclick="ButtonClick">Hello World!</AntButton>
+
+@code{
+    private int amount;
+    private void ButtonClick(MouseEventArgs e)
+    {
+        Console.WriteLine(amount);
+    }
+}

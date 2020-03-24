@@ -1,0 +1,63 @@
+﻿@page "/guid"
+
+<h1>Guid</h1>
+
+<span class="input-group mb-3">
+    <span class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Count:</span>
+    </span>
+    <input type="text" class="form-control" aria-label="Count" @bind="count" />
+</span>
+<button class="btn btn-primary" @onclick="Create">生成</button>
+<div class="btn-group" role="group">
+    @foreach (var f in formats)
+    {
+        <button type="button" class="btn @(f==currentFormat?"btn-success":"btn-secondary") "
+                @onclick="(e=>Format(f))">
+            @f
+        </button>
+    }
+</div>
+<button class="btn @(upper?"btn-success":"btn-secondary")"
+        @onclick="(_=>upper = !upper)" title="Upper">
+    A
+</button>
+
+@foreach (var guid in guids)
+{
+    <div>
+        @(
+            upper ? guid.ToString(currentFormat).ToUpper() : guid.ToString(currentFormat)
+        )
+    </div>
+}
+
+@code {
+
+    static string[] formats = "N D B P X".Split();
+    string currentFormat = formats[0];
+    bool upper = false;
+
+
+    int count = 1;
+
+    System.Guid[] guids;
+
+    System.Guid getGuid() => System.Guid.NewGuid();
+
+    protected override void OnInitialized()
+    {
+        guids = new[] { getGuid() };
+    }
+
+    void Create()
+    {
+        if (count < 1) count = 1;
+        guids = Enumerable.Range(0, count).Select(_ => getGuid()).ToArray();
+    }
+
+    void Format(string f)
+    {
+        currentFormat = f;
+    }
+}
