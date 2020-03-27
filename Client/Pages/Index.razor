@@ -5,14 +5,15 @@
 Welcome to your new app.
 
 <Counter IncrementAmount="amount" ></Counter>
-<SurveyPrompt Title="How is Blazor working for you?" />
 <input @bind="amount" />
 <AntButton type="primary" @onclick="ButtonClick">Hello World!</AntButton>
 
+<SurveyPrompt Title="How is Blazor working for you?" />
 @code{
-    private int amount;
+    private int amount = 5;
     private void ButtonClick(MouseEventArgs e)
     {
+        Console.WriteLine(e);
         Console.WriteLine(amount);
     }
 }

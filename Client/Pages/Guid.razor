@@ -38,8 +38,7 @@
     string currentFormat = formats[0];
     bool upper = false;
 
-
-    int count = 1;
+    int count = 10;
 
     System.Guid[] guids;
 
@@ -47,7 +46,7 @@
 
     protected override void OnInitialized()
     {
-        guids = new[] { getGuid() };
+        Create();
     }
 
     void Create()
