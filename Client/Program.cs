@@ -18,7 +18,7 @@ namespace TryBlazor.Client
 
             //builder.Services.AddBaseAddressHttpClient();
             builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddAntBlazor();
+            builder.Services.AddAntDesign();
             await builder.Build().RunAsync();
         }
     }
