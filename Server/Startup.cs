@@ -48,7 +48,10 @@ namespace TryBlazor.Server
             {
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
-                endpoints.MapHub<ChatHub>("/chatHub");
+            });
+            app.UseEndpoints(endpoints => {
+                endpoints.MapHub<ChatHub>("/hub/chat");
+
             });
         }
     }

@@ -37,7 +37,7 @@
     {
 
         _hubConnection = new HubConnectionBuilder()
-            .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
+            .WithUrl(NavigationManager.ToAbsoluteUri("/hub/chat"))
             .Build();
 
         _hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
