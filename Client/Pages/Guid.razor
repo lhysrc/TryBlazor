@@ -23,17 +23,24 @@
     A
 </button>
 
-@foreach (var guid in guids)
+@*@foreach (var guid in guids)
 {
     <div>
         @(
             upper ? guid.ToString(currentFormat).ToUpper() : guid.ToString(currentFormat)
         )
     </div>
-}
+}*@ 
+@* todo 虚拟化重新生成没效果？ *@
+<Virtualize Items="guids" Context="guid">
+     <div>
+        @(
+            upper ? @guid.ToString(currentFormat).ToUpper() : @guid.ToString(currentFormat)
+        )
+    </div>
+</Virtualize>
 
 @code {
-
     static string[] formats = "N D B P X".Split();
     string currentFormat = formats[0];
     bool upper = false;
